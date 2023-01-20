@@ -1,0 +1,1 @@
+pub const GLOBAL_MINT_AUTHORITY : &str = "global_mint_authority";
