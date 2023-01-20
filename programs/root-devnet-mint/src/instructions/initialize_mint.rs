@@ -1,15 +1,9 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{Mint, Token,};
 
-use crate::state::*;
 use crate::constants::*;
 
-pub fn initialize_mint(ctx: Context<InitializeMint>) -> Result<()> {
-
-   *ctx.accounts.mint_state = MintState {
-        mint_key: ctx.accounts.token_mint.key(),
-        authority: ctx.accounts.signer.key(),
-    };
+pub fn initialize_mint(_ctx: Context<InitializeMint>) -> Result<()> {
 
     Ok(())
 }
@@ -39,17 +33,6 @@ pub struct InitializeMint<'info> {
         mint::authority = global_mint_authority,
     )]
     pub token_mint: Account<'info, Mint>,
-
-    #[account(
-        init,
-        seeds = [
-            token_mint.key().as_ref(),
-        ],
-        bump,
-        payer = signer,
-        space = MintState::LEN
-    )]
-    pub mint_state: Account<'info, MintState>,
 
     pub token_program: Program<'info, Token>,
 

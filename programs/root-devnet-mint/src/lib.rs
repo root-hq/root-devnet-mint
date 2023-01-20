@@ -1,7 +1,6 @@
 use anchor_lang::prelude::*;
 
 pub mod instructions;
-pub mod state;
 pub mod constants;
 
 use instructions::*;
@@ -14,5 +13,9 @@ pub mod root_devnet_mint {
 
     pub fn initialize_mint(ctx: Context<InitializeMint>) -> Result<()> {
         instructions::initialize_mint(ctx)
+    }
+
+    pub fn mint_tokens(ctx: Context<MintTokens>, qty: u64) -> Result<()> {
+        instructions::mint_tokens(ctx, qty)
     }
 }
